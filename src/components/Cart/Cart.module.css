@@ -1,0 +1,230 @@
+.section {
+  background-color: #2d2f39;
+  padding: 10px;
+
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.firsttitle {
+  color: white;
+  font-size: x-large;
+  width: 95%;
+  justify-self: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.products {
+  margin-bottom: 40px;
+  width: 95%;
+  color: #babdc8;
+  font-size: medium;
+  justify-self: center;
+}
+.productitem {
+  background-color: #484a55;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-self: center;
+  padding: 10px;
+  box-sizing: content-box;
+  border-radius: 5px;
+  align-items: center;
+  color: white;
+  margin-bottom: 10px;
+  justify-content: space-around;
+}
+
+.divimage {
+  margin-right: 10px;
+}
+
+.image {
+  border-radius: 5px;
+}
+
+.title {
+  width: 300px;
+  font-size: 20px;
+  color: #babdc8;
+}
+
+.quantity {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: larger;
+  justify-content: space-between;
+}
+.quantitycount {
+  width: 30px;
+  text-align: center;
+}
+
+.quantity button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 5px;
+  align-items: center;
+  background-color: #9497a3;
+  color: white;
+  font-size: small;
+}
+
+.minus {
+  box-sizing: border-box;
+}
+.plus {
+  line-height: 17px;
+}
+
+.info {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceone,
+.pricewhole {
+  font-size: larger;
+  color: white;
+  width: 100px;
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: white;
+  width: 95%;
+  justify-self: center;
+}
+
+.footer button {
+  background-color: #e43582;
+  color: white;
+  width: 200px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: medium;
+}
+.totalprice {
+  font-size: larger;
+}
+
+.buttondelete {
+  width: 3%;
+  color: white;
+  background: none;
+  border: none;
+  align-self: flex-start;
+  text-align: right;
+}
+
+@media screen and (max-width: 1200px) {
+  .title {
+    width: 40%;
+
+    font-size: 1.5vw;
+  }
+  .priceone,
+  .pricewhole,
+  .quantity {
+    width: 20%;
+  }
+  .firsttitle,
+  .totalprice {
+    font-size: 2vw;
+  }
+  .title,
+  .priceone,
+  .pricewhole,
+  .quantitycount,
+  .footer button {
+    font-size: 1.5vw;
+  }
+  .quantity button {
+    border-radius: 3px;
+  }
+  .footer button {
+    width: 30%;
+    height: 3.5vw;
+  }
+
+  .productitem {
+    height: 8vw;
+  }
+  .divimage {
+    height: 100%;
+    width: 13%;
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+  .totalprice {
+    align-self: center;
+  }
+  .products {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .divimage {
+    width: 11%;
+  }
+  .empty {
+    font-size: 2vw;
+  }
+  .title {
+    font-size: 1.8vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .section,
+  .footer button,
+  .productitem {
+    border-radius: 1vw;
+  }
+  .firsttitle {
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+
+  .productitem {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  .footer {
+    margin-bottom: 5px;
+  }
+  .buttondelete {
+    font-size: 2vw;
+  }
+  .quantity {
+    height: 2.5vw;
+  }
+  .quantity button {
+    width: 2.5vw;
+    height: 2.5vw;
+    font-size: 2vw;
+    line-height: 25%;
+    border-radius: 2px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .quantity button {
+    width: 3vw;
+  }
+}

@@ -1,0 +1,275 @@
+.header {
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  height: 40px;
+  align-items: center;
+  width: 80%;
+  margin: 20px 10% 0px;
+  justify-content: space-between;
+}
+.logo {
+  width: 10%;
+  height: 100%;
+}
+
+.info {
+  display: flex;
+  width: 80%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  color: #a6a9b4;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.avatar img {
+  border-radius: 50%;
+}
+
+.form {
+  width: 50%;
+  height: 30px;
+  background: #2d2f39;
+  border-radius: 10px;
+  z-index: 2;
+  justify-content: center;
+}
+
+.formforsearch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  padding: 5px;
+  border: none;
+}
+.searchicon {
+  width: 5%;
+  margin: 0px 10px;
+  align-self: center;
+}
+
+.input {
+  width: 90%;
+  border: none;
+  background: none;
+  color: white;
+}
+
+.input:focus {
+  outline: none;
+}
+.input::placeholder {
+  color: #9497a3;
+}
+
+.box {
+  width: 100%;
+  height: 300px;
+  padding: 5px;
+  background-color: #838591;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: black;
+  overflow-y: auto;
+}
+
+.boxelem {
+  background-color: #5d5f6c;
+  color: rgb(227, 226, 232);
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.boxelem img {
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.cartfav {
+  width: 10%;
+  display: flex;
+  gap: 0px 0.5vw;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.fav,
+.cartimg {
+  height: 100%;
+}
+
+.cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  background-color: #e43582;
+  font-size: xx-small;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -5%;
+  right: -15%;
+  color: #fff;
+}
+
+.text {
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  background-color: #838591;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: white;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 1100px) {
+  .count {
+    right: -10%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header {
+    padding: 0.8vw;
+    height: 5vw;
+    margin-top: 10px;
+  }
+  .user,
+  .form,
+  .formforsearch,
+  .input,
+  .cart {
+    height: 100%;
+  }
+  .cartfav {
+    height: 80%;
+  }
+  .user {
+    font-size: 1.7vw;
+  }
+  .avatar {
+    width: 28%;
+    height: 100%;
+    margin-right: 5px;
+  }
+  .formforsearch {
+    padding: 0;
+  }
+  .input {
+    font-size: 1.5vw;
+  }
+  .count {
+    /* width: 8px;
+    height: 8px;
+    font-size: 10%;
+   */
+    text-align: center;
+    right: -15%;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .avatar {
+    width: 30%;
+  }
+  .searchicon {
+    width: 5%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .count {
+    width: 9px;
+    height: 9px;
+    font-size: 8px;
+    right: -10%;
+  }
+
+  .box {
+    width: 100%;
+    height: 1200%;
+    padding: 3px;
+
+    margin-top: 5px;
+    border-radius: 1vw;
+  }
+
+  .boxelem {
+    padding: 2px;
+    border-radius: 1vw;
+    margin-bottom: 5px;
+    font-size: 2.5vw;
+  }
+
+  .boxelem img {
+    width: 6vw;
+    height: 6vw;
+    /* width: 30%;
+height: ; */
+    margin-right: 5px;
+    border-radius: 0.8vw;
+  }
+  .text {
+    height: 200%;
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .count {
+    width: 7px;
+    height: 7px;
+    font-size: 6px;
+    right: 0;
+  }
+  .form,
+  .box,
+  .text {
+    border-radius: 1vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  .boxelem {
+    margin-bottom: 2px;
+  }
+  .count {
+    width: 4.5px;
+    height: 4.5px;
+    font-size: 3.5px;
+    right: 20%;
+  }
+}

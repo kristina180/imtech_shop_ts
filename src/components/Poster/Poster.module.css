@@ -1,0 +1,178 @@
+.poster {
+  background-color: #2d2f39;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 420px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  width: 50%;
+  height: 100%;
+}
+
+.product button {
+  background-color: #e43582;
+  border-radius: 5px;
+  border: none;
+  color: #f6f6f7;
+  width: 120px;
+  height: 30px;
+  font-size: medium;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #777a85;
+  font-size: 150px;
+  font-weight: 800;
+  justify-self: flex-end;
+}
+
+.subtitle {
+  color: #6a6b70;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.text {
+  color: #f6f6f7;
+  font-size: 40px;
+  font-weight: 600;
+  width: 350px;
+  margin-bottom: 15px;
+}
+
+.image {
+  width: 50%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .poster {
+    height: 350px;
+  }
+  .image {
+    justify-self: flex-end;
+    height: 100%;
+  }
+
+  .title {
+    font-size: 120px;
+    align-items: flex-start;
+  }
+  .subtitle {
+    font-size: 1.5vw;
+    margin-bottom: 5px;
+  }
+  .text {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .product button {
+    width: 100px;
+    height: 25px;
+    font-size: small;
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .poster {
+    height: 300px;
+  }
+  .title {
+    font-size: 100px;
+  }
+  .text {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .poster {
+    height: 40vw;
+  }
+  .title {
+    font-size: 15vw;
+  }
+  .subtitle {
+    margin-bottom: 3px;
+  }
+  .text {
+    font-size: 4vw;
+    width: 80%;
+    margin-bottom: 0;
+    margin-top: 3px;
+  }
+  .product button {
+    width: 30%;
+    height: 7%;
+    font-size: 1.5vw;
+    margin-bottom: 4%;
+    border-radius: 0.5vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .poster {
+    border-radius: 1vw;
+  }
+}
+
+/* @media screen and (max-width: 1000px) {
+  .poster {
+    height: 300px;
+  }
+  .product {
+    width: 50%;
+    margin-left: 3%;
+  }
+  .title {
+    height: 160px;
+    font-size: 125px;
+    align-items: flex-start;
+  }
+  .subtitle {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .text {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .product button {
+    width: 100px;
+    height: 20px;
+    font-size: small;
+  }
+
+  .image {
+    width: 50%;
+    max-height: 110%;
+    align-self: center;
+  }
+} */
+
+/* @media screen and (max-width: 1000px) {
+  .title {
+    height: 150px;
+    font-size: 115px;
+  }
+  .text {
+    font-size: 25px;
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+} */

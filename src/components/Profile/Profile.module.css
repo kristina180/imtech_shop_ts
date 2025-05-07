@@ -1,0 +1,176 @@
+/* .section {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  width: 25%;
+  height: 100%;
+  background-color: #2d2f39;
+  color: #f6f6f7;
+  padding-top: 20px;
+} */
+.profile {
+  background-color: #2d2f39;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.formsection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+.form {
+  width: 100%;
+}
+
+.form * {
+  display: flex;
+  flex-direction: column;
+}
+.group {
+  height: 40px;
+  margin-bottom: 10px;
+}
+.group input {
+  background-color: #484a55;
+
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  color: #f6f6f7;
+  padding: 10px;
+  font-size: medium;
+}
+.group input:focus {
+  border: none;
+  border: #babdc8;
+}
+.group input::placeholder {
+  color: #f6f6f7;
+}
+
+.link {
+  font-size: small;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.closeform {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+  color: white;
+  background: none;
+  border: none;
+}
+
+.submit {
+  height: 40px;
+  width: 100%;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #e43582;
+  color: white;
+  font-size: large;
+}
+
+.overlay {
+  background-color: #2d2f39;
+  opacity: 0.8;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  justify-content: left;
+}
+.nologin {
+  color: #9497a3;
+  font-size: 20px;
+}
+.logout {
+  margin-top: 5px;
+  background-color: #484a55;
+}
+
+@media screen and (max-width: 1200px) {
+  .profile {
+    padding: 10px;
+  }
+  .section {
+    width: 35%;
+  }
+  .group,
+  .submit {
+    height: 40px;
+  }
+  .group {
+    margin-bottom: 5px;
+  }
+
+  .nologin {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .group input,
+  .submit {
+    font-size: 1.6vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .group,
+  .submit {
+    height: 30px;
+  }
+
+  .group input,
+  .submit {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile,
+  .group input {
+    padding: 5px;
+  }
+  .group,
+  .submit {
+    height: 20px;
+    margin-bottom: 1vw;
+  }
+
+  .group input,
+  .submit {
+    font-size: 2vw;
+  }
+  .profile,
+  .group input,
+  .submit {
+    border-radius: 1vw;
+  }
+}

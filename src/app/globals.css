@@ -1,18 +1,20 @@
 :root {
-  --background: #ffffff;
+  --background: #484a55;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 html,
 body {
   max-width: 100vw;
+
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -22,6 +24,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layout {
+  width: 1400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 * {
@@ -35,8 +49,47 @@ a {
   text-decoration: none;
 }
 
+.content {
+  width: 80%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.children {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 5px;
+}
+
+/* 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+} */
+@media screen and (max-width: 1200px) {
+  html,
+  body,
+  .layout {
+    min-height: 100vh;
+    height: unset;
+  }
+  .layout {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .content {
+    flex-direction: column;
+    margin-top: 5px;
+  }
+  .children {
+    margin-left: 0;
+    margin-bottom: 10px;
   }
 }
