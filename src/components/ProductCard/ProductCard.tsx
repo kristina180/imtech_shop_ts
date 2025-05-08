@@ -35,22 +35,6 @@ const ProductCard: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    const cookies: string | undefined = document.cookie
-      .split(";")
-      .find((elem) => elem.includes("token"));
-
-    if (!cookies) {
-      return;
-    } else {
-      const token: string = cookies.replace("token=", "");
-
-      if (user == null) {
-        dispatch(checkAuth(token));
-      }
-    }
-  }, []);
-
   return (
     <>
       {products &&

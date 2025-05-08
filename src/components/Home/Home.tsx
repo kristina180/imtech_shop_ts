@@ -19,22 +19,6 @@ const Home: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const cookies: string | undefined = document.cookie
-      .split(";")
-      .find((elem) => elem.includes("token"));
-
-    if (!cookies) {
-      return;
-    } else {
-      const token: string = cookies.replace("token=", "");
-
-      if (user == null) {
-        dispatch(checkAuth(token));
-      }
-    }
-  }, []);
-
   return (
     <div className={styles.page}>
       <Poster />

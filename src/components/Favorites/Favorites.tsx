@@ -23,22 +23,6 @@ const Favorites: React.FC = () => {
   const { push } = useRouter();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const cookies: string | undefined = document.cookie
-      .split(";")
-      .find((elem) => elem.includes("token"));
-
-    if (!cookies) {
-      return;
-    } else {
-      const token: string = cookies.replace("token=", "");
-
-      if (user == null) {
-        dispatch(checkAuth(token));
-      }
-    }
-  }, []);
-
   function getQuentity(id: number): number {
     const quan: ICart | undefined = cart.find((elem) => elem.id == id);
     if (quan !== undefined) {

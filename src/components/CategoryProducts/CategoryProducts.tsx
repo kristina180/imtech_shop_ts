@@ -53,22 +53,6 @@ const CategoryProducts: React.FC = () => {
     localStorage.setItem("startItem", JSON.stringify(valueProducts));
   }, [valueProducts]);
 
-  useEffect(() => {
-    const cookies: string | undefined = document.cookie
-      .split(";")
-      .find((elem) => elem.includes("token"));
-
-    if (!cookies) {
-      return;
-    } else {
-      const token: string = cookies.replace("token=", "");
-
-      if (user == null) {
-        dispatch(checkAuth(token));
-      }
-    }
-  }, []);
-
   function getCategoryProducts(): IProduct[] {
     const data_localStorage = localStorage.getItem("startItem");
     const localStorageProducts: IProduct[] =

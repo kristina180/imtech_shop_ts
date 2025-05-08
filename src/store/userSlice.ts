@@ -45,7 +45,7 @@ export const createUser = createAsyncThunk<
     const response_token = await axios.post(`${USER_URL}auth/login`, payload, {
       headers: { "Content-Type": "application/json" },
     });
-    document.cookie = `token=${response_token.data.access_token}; max-age=3600`;
+
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -76,7 +76,7 @@ export const loginUser = createAsyncThunk<
     const response = await axios.post(`${USER_URL}auth/login`, payload, {
       headers: { "Content-Type": "application/json" },
     });
-    document.cookie = `token=${response.data.access_token}; max-age=3600`;
+
     const login = await axios(`${USER_URL}auth/profile`, {
       headers: { Authorization: `Bearer ${response.data.access_token}` },
     });
