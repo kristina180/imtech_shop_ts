@@ -2,16 +2,10 @@
 
 import Image from "next/image";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/hooks/hook";
 
-import {
-  removeFromCart,
-  cleanCart,
-  addToCart,
-  checkAuth,
-} from "@/store/userSlice";
+import { removeFromCart, cleanCart, addToCart } from "@/store/userSlice";
 
 import styles from "./Cart.module.css";
 

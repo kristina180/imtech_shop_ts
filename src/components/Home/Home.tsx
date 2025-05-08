@@ -5,10 +5,7 @@ import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
 import PosterSecond from "../PosterSecond/PosterSecond";
 
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-
-import { checkAuth } from "@/store/userSlice";
 
 import styles from "./Home.module.css";
 

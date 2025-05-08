@@ -3,12 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/hooks/hook";
 
-import {
-  updateUser,
-  toggleForm,
-  checkAuth,
-  logoutChange,
-} from "@/store/userSlice";
+import { updateUser, toggleForm, logoutChange } from "@/store/userSlice";
 
 import { IUser } from "@/utils/types";
 import styles from "./Profile.module.css";

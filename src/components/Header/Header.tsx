@@ -14,6 +14,7 @@ import avatarImg from "../../../public/avatar.svg";
 import iconSearch from "../../../public/icon_search.svg";
 import iconFavorites from "../../../public/favorites.svg";
 import iconCart from "../../../public/cart.svg";
+import { notPhoto } from "@/utils/constants";
 import { IProduct } from "@/utils/types";
 import styles from "./Header.module.css";
 
@@ -38,17 +39,27 @@ const Header: React.FC = () => {
     if (value != "") {
       const filters: string[] = value.toLowerCase().split(" ");
 
-      rezult = products.filter((item) =>
-        filters.some(
-          (elem) =>
-            item.title.toLowerCase().includes(elem) ||
-            item.category.slug.includes(elem) ||
-            item.description.toLowerCase().includes(elem)
-        )
-      );
+      if (filters.length > 1) {
+        rezult = products.filter((item) =>
+          filters.every(
+            (elem) =>
+              item.title.toLowerCase().includes(elem) ||
+              item.category.slug.includes(elem) ||
+              item.description.toLowerCase().includes(elem)
+          )
+        );
+      } else {
+        rezult = products.filter((item) =>
+          filters.some(
+            (elem) =>
+              item.title.toLowerCase().includes(elem) ||
+              item.category.slug.includes(elem) ||
+              item.description.toLowerCase().includes(elem)
+          )
+        );
+      }
+      setFilterValue(rezult);
     }
-
-    setFilterValue(rezult);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -143,11 +154,15 @@ const Header: React.FC = () => {
                         href={`/product/${elem.id}`}
                         className={styles.boxelem}
                       >
-                        <Image
+                        <img
                           src={elem.images[0]}
                           width={40}
                           height={40}
                           alt=""
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = notPhoto;
+                          }}
                         />
                         {elem.title.split(" ").slice(0, 3).join(" ")}
                       </Link>

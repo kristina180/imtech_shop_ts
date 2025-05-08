@@ -3,14 +3,12 @@
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 
 import {
   addToCart,
   removeFromFavorites,
   removeFromCart,
-  checkAuth,
 } from "@/store/userSlice";
 
 import { ICart } from "@/utils/types";

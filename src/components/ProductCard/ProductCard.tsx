@@ -3,7 +3,6 @@
 import Products from "../Products/Products";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 
 import {
@@ -11,7 +10,6 @@ import {
   removeFromCart,
   addToFavorites,
   removeFromFavorites,
-  checkAuth,
 } from "@/store/userSlice";
 
 import { notPhoto } from "@/utils/constants";

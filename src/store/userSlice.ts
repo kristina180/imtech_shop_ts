@@ -87,20 +87,20 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const checkAuth = createAsyncThunk<
-  TCheckAuth,
-  string,
-  { rejectValue: string }
->("user/checkAuth", async function (payload, { rejectWithValue }) {
-  try {
-    const response = await axios.get(`${USER_URL}auth/profile`, {
-      headers: { Authorization: `Bearer ${payload}` },
-    });
-    return { data: response.data, token: payload };
-  } catch (error: any) {
-    return rejectWithValue(error.message);
-  }
-});
+// export const checkAuth = createAsyncThunk<
+//   TCheckAuth,
+//   string,
+//   { rejectValue: string }
+// >("user/checkAuth", async function (payload, { rejectWithValue }) {
+//   try {
+//     const response = await axios.get(`${USER_URL}auth/profile`, {
+//       headers: { Authorization: `Bearer ${payload}` },
+//     });
+//     return { data: response.data, token: payload };
+//   } catch (error: any) {
+//     return rejectWithValue(error.message);
+//   }
+// });
 
 export const updateUser = createAsyncThunk<
   IUser,
@@ -216,11 +216,11 @@ const userSlice = createSlice({
     builder.addCase(getAllUsers.fulfilled, (state, action) => {
       state.allusers = action.payload;
     });
-    builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.user = action.payload.data;
-      state.token = action.payload.token;
-      state.logout = false;
-    });
+    // builder.addCase(checkAuth.fulfilled, (state, action) => {
+    //   state.user = action.payload.data;
+    //   state.token = action.payload.token;
+    //   state.logout = false;
+    // });
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.token = payload.token;

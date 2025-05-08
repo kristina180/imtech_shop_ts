@@ -11,11 +11,9 @@
 
 .images {
   width: 55%;
-  /* min-height: 100%; */
   min-height: 390px;
   display: grid;
   grid-template-columns: 4fr 1fr;
-  /* grid-template-rows: repeat(auto-fit, minmax(65px, 1fr)); */
   column-gap: 5px;
   row-gap: 5px;
   box-sizing: border-box;
@@ -193,8 +191,14 @@
   .priceProduct {
     font-size: 170%;
   }
+
   .quantity button {
-    font-size: 50%;
+    font-size: 30px;
+  }
+
+  .quantitycount {
+    font-size: 30px;
+    width: 20%;
   }
 
   .buttons {

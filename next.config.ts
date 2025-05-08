@@ -40,6 +40,11 @@ const nextConfig: NextConfig = {
         hostname: "i.imgur.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+        pathname: "**",
+      },
     ],
   },
   compiler: {

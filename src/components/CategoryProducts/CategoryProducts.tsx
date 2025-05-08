@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 
-import { checkAuth } from "@/store/userSlice";
-
 import { notPhoto } from "@/utils/constants";
 import { IProduct } from "@/utils/types";
 import styles from "./CategoryProducts.module.css";
