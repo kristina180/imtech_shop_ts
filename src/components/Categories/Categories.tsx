@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 import { notPhoto } from "@/utils/constants";
 import { IPropsForCategories } from "@/utils/types";
@@ -28,7 +27,7 @@ const Categories: React.FC<IPropsForCategories> = ({
                 className={styles.linkcategories}
               >
                 <div className={styles.divimage}>
-                  <Image
+                  <img
                     src={image}
                     alt=""
                     width={170}
