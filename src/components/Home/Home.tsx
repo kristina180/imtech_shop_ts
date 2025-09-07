@@ -6,39 +6,33 @@ import Products from "../Products/Products";
 import PosterSecond from "../PosterSecond/PosterSecond";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { IProduct } from "@/utils/types";
 
+import { notPhoto } from "@/utils/constants";
 import styles from "./Home.module.css";
 
 const Home: React.FC = () => {
   const { products } = useAppSelector((state) => state.products);
   const { category } = useAppSelector((state) => state.category);
-  const { user } = useAppSelector((state) => state.user);
 
-  const dispatch = useAppDispatch();
+  const list_products: IProduct[] = products.filter((_, i) => i < 5);
+  const list_categories: string[] = category.filter((_, i) => i < 5);
+  const list_products_category: (IProduct | undefined)[] = list_categories.map(
+    (categ) => {
+      const product = products.find((elem) => elem.category.slug == categ);
+
+      return product;
+    }
+  );
 
   return (
     <div className={styles.page}>
       <Poster />
-      <Products
-        products={products}
-        amount={5}
-        titlefirst="Popular"
-        buttontext="See More"
-      />
+      <Products products={list_products} titlefirst="Popular" />
 
-      <Categories
-        titlefirst="Worth Seen"
-        products={products}
-        amount={5}
-        categories={category}
-      />
+      <Categories titlefirst="Worth Seen" products={list_products_category} />
       <PosterSecond />
-      <Products
-        products={products}
-        amount={5}
-        titlefirst="New Lots"
-        buttontext="See More"
-      />
+      <Products products={list_products} titlefirst="New Lots" />
     </div>
   );
 };

@@ -22,9 +22,7 @@ const AuthForm: React.FC = () => {
       />
       {formType === "signup" ? <UserSignupForm /> : <UserLoginForm />}
     </>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default AuthForm;

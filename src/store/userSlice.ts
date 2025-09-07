@@ -42,26 +42,23 @@ export const createUser = createAsyncThunk<
       },
       { headers: { "Content-Type": "application/json" } }
     );
-    const response_token = await axios.post(`${USER_URL}auth/login`, payload, {
-      headers: { "Content-Type": "application/json" },
-    });
+
+    await axios.post(`${USER_URL}auth/login`, payload);
 
     return response.data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue(error.message);
-    }
+  } catch (error: any) {
+    return rejectWithValue(error.message);
   }
 });
 
 export const getAllUsers = createAsyncThunk<
   IGettingUser[],
-  undefined,
+  void,
   { rejectValue: string }
 >("user/getAllUsers", async function (_, { rejectWithValue }) {
   try {
     const response = await fetch(`${USER_URL}users?limit=1000`);
-    return response.json();
+    return await response.json();
   } catch (error: any) {
     return rejectWithValue(error.message);
   }
@@ -73,9 +70,7 @@ export const loginUser = createAsyncThunk<
   { rejectValue: string }
 >("user/loginUser", async function (payload, { rejectWithValue }) {
   try {
-    const response = await axios.post(`${USER_URL}auth/login`, payload, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axios.post(`${USER_URL}auth/login`, payload);
 
     const login = await axios(`${USER_URL}auth/profile`, {
       headers: { Authorization: `Bearer ${response.data.access_token}` },
@@ -87,42 +82,21 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-// export const checkAuth = createAsyncThunk<
-//   TCheckAuth,
-//   string,
-//   { rejectValue: string }
-// >("user/checkAuth", async function (payload, { rejectWithValue }) {
-//   try {
-//     const response = await axios.get(`${USER_URL}auth/profile`, {
-//       headers: { Authorization: `Bearer ${payload}` },
-//     });
-//     return { data: response.data, token: payload };
-//   } catch (error: any) {
-//     return rejectWithValue(error.message);
-//   }
-// });
-
 export const updateUser = createAsyncThunk<
   IUser,
   IUser,
   { rejectValue: string }
 >("user/updateUser", async function (payload, { rejectWithValue }) {
   try {
-    const response = await axios.put(
-      `${USER_URL}users/${payload.id}`,
-      {
-        name: `${payload.name}`,
-        email: `${payload.email}`,
-        password: `${payload.password}`,
-        avatar: `${payload.avatar}`,
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
+    const response = await axios.put(`${USER_URL}users/${payload.id}`, {
+      name: `${payload.name}`,
+      email: `${payload.email}`,
+      password: `${payload.password}`,
+      avatar: `${payload.avatar}`,
+    });
     return response.data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return rejectWithValue(error.message);
-    }
+  } catch (error: any) {
+    return rejectWithValue(error.message);
   }
 });
 
@@ -143,36 +117,28 @@ const userSlice = createSlice({
     },
 
     addToCart(state, action: PayloadAction<TPayloadType>) {
-      let id = action.payload.id;
-      let found = state.cart.find((elem) => elem.id == id);
+      const { id, products } = action.payload;
+      const found = state.cart.find((item) => item.id === id);
       if (found && found.quantity) {
         found.quantity++;
       } else {
-        let new_elem = action.payload.products.find(
-          (elem: IProduct) => elem.id == id
-        );
-        if (new_elem) {
-          state.cart.push({
-            id: new_elem.id,
-            images: new_elem.images,
-            title: new_elem.title,
-            price: +new_elem.price,
-            quantity: 1,
-          });
+        const product = products.find((elem) => elem.id == id);
+        if (product) {
+          state.cart.push({ ...product, quantity: 1 });
         }
       }
     },
     removeFromCart(state, action: PayloadAction<IRemoveFromCartFav>) {
-      const id = action.payload.id;
-      let found = state.cart.find((elem) => elem.id == action.payload.id);
+      const { id, delete: shouldDelete } = action.payload;
+      let found = state.cart.find((elem) => elem.id == id);
       if (found) {
-        if (found.quantity == 1 || action.payload.delete) {
+        if (found.quantity == 1 || shouldDelete) {
           state.cart = state.cart.filter((elem) => {
             return elem.id != id;
           });
         } else {
           if (found.quantity) {
-            found.quantity = found.quantity - 1;
+            found.quantity--;
           }
         }
       }
@@ -183,21 +149,13 @@ const userSlice = createSlice({
     },
 
     addToFavorites(state, action: PayloadAction<TPayloadType>) {
-      let id = action.payload.id;
-      let found = state.favorites.find((elem) => elem.id == id);
+      const { id, products } = action.payload;
+      const found = state.favorites.some((item) => item.id === id);
       if (!found) {
-        let new_elem = action.payload.products.find(
-          (elem: IProduct) => elem.id == id
-        );
-        if (new_elem) {
-          const new_fav = {
-            id: new_elem.id,
-            images: new_elem.images,
-            title: new_elem.title,
-
-            price: +new_elem.price,
-          };
-          state.favorites.push(new_fav);
+        let product = products.find((elem) => elem.id == id);
+        if (product) {
+          const { id, images, title, price } = product;
+          state.favorites.push({ id, images, title, price });
         }
       }
     },
@@ -216,11 +174,7 @@ const userSlice = createSlice({
     builder.addCase(getAllUsers.fulfilled, (state, action) => {
       state.allusers = action.payload;
     });
-    // builder.addCase(checkAuth.fulfilled, (state, action) => {
-    //   state.user = action.payload.data;
-    //   state.token = action.payload.token;
-    //   state.logout = false;
-    // });
+
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.token = payload.token;

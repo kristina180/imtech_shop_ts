@@ -14,37 +14,36 @@ const Sidebar: React.FC = () => {
   let page_category = pathname.replace("/category/", "");
 
   return (
-    <div className={styles.sidebar}>
-      <div className={styles.title}>CATEGORIES</div>
-      <nav>
+    <aside className={styles.sidebar}>
+      <header className={styles.title}>CATEGORIES</header>
+      <nav aria-label="catedory navigation">
         <ul className={styles.menu}>
-          {category.map((elem, index) => (
-            <li key={index}>
-              {elem == page_category ? (
+          {category.map((elem) => {
+            const isActive = elem == page_category;
+            return (
+              <li key={elem}>
                 <Link
                   href={`/category/${elem}`}
-                  className={`${styles.selected} ${styles.link}`}
+                  className={`${isActive ? styles.selected : ""} ${
+                    styles.link
+                  }`}
                 >
                   {elem[0].toUpperCase() + elem.slice(1)}
                 </Link>
-              ) : (
-                <Link href={`/category/${elem}`} className={styles.link}>
-                  {elem[0].toUpperCase() + elem.slice(1)}
-                </Link>
-              )}
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </nav>
-      <div className={styles.footer}>
+      <footer className={styles.footer}>
         <div>
           <Link href="/help">Help</Link>
         </div>
         <div className={styles.footerterm}>
           <Link href="/terms">Term & Conditions</Link>
         </div>
-      </div>
-    </div>
+      </footer>
+    </aside>
   );
 };
 

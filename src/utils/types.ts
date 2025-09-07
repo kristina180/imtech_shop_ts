@@ -92,7 +92,7 @@ export type TPayloadType = {
 export interface IOfferedProducts {
   titlefirst: string;
   products: IProduct[];
-  amount: number;
+
   buttontext?: string;
 }
 
@@ -116,9 +116,7 @@ export type TGetCategories = ICategories[];
 
 export interface IPropsForCategories {
   titlefirst: string;
-  products: IProduct[];
-  amount: number;
-  categories: string[];
+  products: (IProduct | undefined)[];
 }
 
 // For Cart and Favorites

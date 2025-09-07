@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   const { push } = useRouter();
 
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <Image
         src={logoImage}
         alt="logo"
@@ -21,22 +21,30 @@ const Footer: React.FC = () => {
       />
 
       <div className={styles.writers}>Developed by Kristina Gusyasyan</div>
-      <div className={styles.smicons}>
-        <Image
-          src={youtubeIcon}
-          alt="youtube icon"
-          onClick={() => push("https://www.youtube.com/")}
-          className={styles.youtube}
-        />
+      <nav className={styles.smicons}>
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          aria-label="YouTube"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={youtubeIcon}
+            alt="YouTube icon"
+            className={styles.youtube}
+          />
+        </a>
 
-        <Image
-          src={instaIcon}
-          alt="insta icon"
-          onClick={() => push("https://instagram.com/")}
-          className={styles.insta}
-        />
-      </div>
-    </div>
+        <a
+          href="https://instagram.com/"
+          target="_blank"
+          aria-label="Instagram"
+          rel="noopener noreferrer"
+        >
+          <Image src={instaIcon} alt="Insta icon" className={styles.insta} />
+        </a>
+      </nav>
+    </footer>
   );
 };
 

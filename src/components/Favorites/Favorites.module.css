@@ -37,6 +37,7 @@
 }
 .divimage {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .image {
@@ -47,6 +48,7 @@
   width: 40%;
   font-size: 20px;
   color: #babdc8;
+  cursor: pointer;
 }
 
 .info {
@@ -72,6 +74,7 @@
   border: none;
   align-self: flex-start;
   text-align: right;
+  cursor: pointer;
 }
 
 .buttonCart {
@@ -79,10 +82,11 @@
   border-radius: 5px;
   border: none;
   color: #f6f6f7;
-  width: 20%;
-  height: 40%;
+  width: 120px;
+  height: 28px;
 
-  font-size: 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .quantity {
@@ -101,14 +105,15 @@
 }
 
 .quantity button {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: none;
   border-radius: 5px;
   align-items: center;
   background-color: #9497a3;
   color: white;
   font-size: small;
+  cursor: pointer;
 }
 
 .minus {
@@ -163,6 +168,13 @@
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .buttonCart {
+    width: 100px;
+    height: 22px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .divimage {
     width: 11%;
@@ -173,6 +185,11 @@
 
   .title {
     font-size: 1.8vw;
+  }
+
+  .buttonCart {
+    width: 10vw;
+    height: 3vw;
   }
 }
 

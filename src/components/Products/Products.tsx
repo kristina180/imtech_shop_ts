@@ -7,11 +7,7 @@ import styles from "./Products.module.css";
 const Products: React.FC<IOfferedProducts> = ({
   titlefirst,
   products = [],
-  amount,
-  buttontext,
 }) => {
-  const list: IProduct[] = products.filter((_, i) => i < amount);
-
   function makeTitle(text: string) {
     let arr_title = text.split(" ").slice(0, 4);
     if (arr_title[3] == "-") {
@@ -25,7 +21,7 @@ const Products: React.FC<IOfferedProducts> = ({
       {titlefirst && <div className={styles.titlefirst}>{titlefirst}</div>}
 
       <div className={styles.list}>
-        {list.map(({ id, images, title, price }) => (
+        {products.map(({ id, images, title, price }) => (
           <Link href={`/product/${id}`} key={id} className={styles.linkproduct}>
             <div className={styles.divimage}>
               <img

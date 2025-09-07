@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { notPhoto } from "@/utils/constants";
@@ -7,44 +9,42 @@ import styles from "./Categories.module.css";
 const Categories: React.FC<IPropsForCategories> = ({
   titlefirst,
   products = [],
-  amount,
-  categories = [],
 }) => {
-  const list: string[] = categories.filter((_, i) => i < amount);
-
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       {titlefirst && <div className={styles.titlefirst}>{titlefirst}</div>}
-      {products.length != 0 && (
+      {products.length > 0 && (
         <div className={styles.list}>
-          {list.map((categ, index) => {
-            const obj = products.find((elem) => elem.category.slug == categ);
-            const image = obj ? obj.images[0] : notPhoto;
+          {products.map((product) => {
+            const image = product?.images?.[0] || notPhoto;
+
+            const category_name = product
+              ? product.category.name
+              : "error_category";
+
             return (
               <Link
-                key={index}
-                href={`/category/${categ}`}
+                key={category_name}
+                href={`/category/${category_name.toLocaleLowerCase()}`}
                 className={styles.linkcategories}
               >
                 <div className={styles.divimage}>
                   <img
                     src={image}
-                    alt=""
+                    alt={`Category ${category_name}`}
                     width={170}
                     height={170}
                     className={styles.image}
                   />
                 </div>
 
-                <div className={styles.title}>
-                  {categ[0].toUpperCase() + categ.slice(1)}
-                </div>
+                <div className={styles.title}>{category_name}</div>
               </Link>
             );
           })}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

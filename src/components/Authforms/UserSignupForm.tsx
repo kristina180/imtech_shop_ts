@@ -25,22 +25,27 @@ const UserSignupForm: React.FC = () => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = ({
     target: { value, name },
   }) => {
-    setValue({ ...values, [name]: value });
+    setValue((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const isEmpty = Object.values(values).some((elem) => !elem);
-    if (isEmpty) return;
+
+    if (Object.values(values).some((elem) => !elem)) return;
+
     dispatch(createUser(values));
     dispatch(toggleForm(false));
   };
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       <div className={styles.formsection}>
-        <div className={styles.title}>Register</div>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <header className={styles.title}>Register</header>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          aria-label="Signup form"
+        >
           <div className={styles.group}>
             <input
               type="email"
@@ -91,10 +96,11 @@ const UserSignupForm: React.FC = () => {
       <button
         className={styles.closeform}
         onClick={() => dispatch(toggleForm(false))}
+        aria-label="Close signup form"
       >
         ✕
       </button>
-    </div>
+    </section>
   );
 };
 

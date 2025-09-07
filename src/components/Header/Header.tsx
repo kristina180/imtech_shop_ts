@@ -30,14 +30,18 @@ const Header: React.FC = () => {
   const { push } = useRouter();
   const dispatch = useAppDispatch();
 
-  function hanleSearch({
+  function handleSearch({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>): void {
     setSearchValue(value);
     let rezult: IProduct[] = [];
 
     if (value != "") {
-      const filters: string[] = value.toLowerCase().split(" ");
+      const filters: string[] = value
+        .toLowerCase()
+        .split(" ")
+        .map((str) => str.trim())
+        .filter(Boolean);
 
       if (filters.length > 1) {
         rezult = products.filter((item) =>
@@ -75,21 +79,17 @@ const Header: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!user) return;
-
-    setUserValue(user.name);
-    setAvatar(user.avatar);
+    if (!user) {
+      setUserValue("Guest");
+      setAvatar(avatarImg);
+    } else {
+      setUserValue(user.name);
+      setAvatar(user.avatar);
+    }
   }, [user]);
 
   useEffect(() => {
-    if (!logout) return;
-
-    setUserValue("Guest");
-    setAvatar(avatarImg);
-  }, [logout]);
-
-  useEffect(() => {
-    window.addEventListener("click", (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const searchinput = document.getElementById("searchinput");
       const searchform = document.getElementById("searchform");
       if (searchform && searchinput) {
@@ -100,30 +100,40 @@ const Header: React.FC = () => {
           setSearchValue("");
         }
       }
-    });
-  });
+    };
+
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, []);
 
   return (
-    <div className={styles.header}>
-      <Image
-        src={logoImage}
-        alt="logo"
-        className={styles.logo}
-        onClick={() => push("/")}
-      />
+    <header className={styles.header}>
+      <Link
+        href="/"
+        aria-label="Главная страница"
+        className={styles.logo_button}
+      >
+        <Image
+          src={logoImage}
+          className={styles.logo}
+          alt="logo"
+          onClick={() => push("/")}
+          priority
+        />
+      </Link>
 
       <div className={styles.info}>
-        <div className={styles.user} onClick={handleClick}>
+        <button className={styles.user} onClick={handleClick}>
           <Image
             src={userAvatar}
-            alt="avatar"
+            alt={user ? "avatar user" : "guest"}
             width={50}
             height={50}
             className={styles.avatar}
           />
 
-          <div className={styles.username}>{userValue}</div>
-        </div>
+          <span className={styles.username}>{userValue}</span>
+        </button>
 
         <form className={styles.form} id="form" onSubmit={handleSubmit}>
           <div className={styles.formforsearch} id="searchform">
@@ -140,7 +150,7 @@ const Header: React.FC = () => {
               name="search"
               placeholder="Search for anything"
               autoComplete="off"
-              onChange={hanleSearch}
+              onChange={handleSearch}
               id="searchinput"
             ></input>
           </div>
@@ -170,7 +180,7 @@ const Header: React.FC = () => {
                   ))}
                 </div>
               ) : (
-                <div className={styles.text}>"Nothing searched"</div>
+                <div className={styles.text}>Nothing searched</div>
               )}
             </>
           )}
@@ -190,11 +200,13 @@ const Header: React.FC = () => {
               onClick={() => push("/cart")}
               className={styles.cartimg}
             />
-            <div className={styles.count}>{cart.length}</div>
+            <div className={styles.count}>
+              <p>{cart.length}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

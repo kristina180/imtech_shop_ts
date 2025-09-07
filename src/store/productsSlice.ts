@@ -1,20 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { USER_URL } from "../utils/constants";
 import { TInitialStateProducts, IProduct } from "@/utils/types";
 
 export const getProducts = createAsyncThunk<
   IProduct[],
-  undefined,
+  void,
   { rejectValue: string }
 >("products/getProducts", async function (_, { rejectWithValue }) {
   try {
     const response = await fetch(`${USER_URL}products`);
-
-    return response.json();
+    if (!response.ok) throw new Error("Failed to fetch products");
+    return await response.json();
   } catch (error: any) {
-    return rejectWithValue(error.message);
+    return rejectWithValue(error.message || "Unknown error");
   }
 });
 
@@ -30,6 +29,7 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.products = action.payload;
+      state.isLoading = false;
     });
 
     builder.addCase(getProducts.pending, (state) => {

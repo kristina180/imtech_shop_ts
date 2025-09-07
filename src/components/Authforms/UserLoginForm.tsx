@@ -21,36 +21,38 @@ const UserLoginForm: React.FC = () => {
   function handleChange({
     target: { value, name },
   }: React.ChangeEvent<HTMLInputElement>) {
-    setValue({ ...values, [name]: value });
+    setValue((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const isEmpty = Object.values(values).some((elem) => !elem);
-    if (isEmpty) return;
+    if (Object.values(values).some((elem) => !elem)) return;
 
     const found = allusers
       ? allusers.find((elem) => elem.email == values.email)
       : undefined;
 
-    if (found) {
-      if (found.password == values.password) {
-        dispatch(loginUser(values));
-        dispatch(toggleForm(false));
-      } else {
-        alert("Неверный пароль");
-      }
-    } else {
-      alert("Пользователь не зарегистрирован");
+    if (!found) {
+      return alert("Пользователь не зарегистрирован");
     }
+
+    if (found.password !== values.password) return alert("Неверный пароль");
+
+    dispatch(loginUser(values));
+    dispatch(toggleForm(false));
   }
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section} aria-label="Login form section">
       <div className={styles.formsection}>
-        <div className={styles.title}>Register</div>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <header className={styles.title}>Login</header>
+
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          aria-label="Login form"
+        >
           <div className={styles.group}>
             <input
               type="email"
@@ -60,7 +62,7 @@ const UserLoginForm: React.FC = () => {
               autoComplete="off"
               onChange={handleChange}
               required
-            ></input>
+            />
           </div>
           <div className={styles.group}>
             <input
@@ -71,7 +73,7 @@ const UserLoginForm: React.FC = () => {
               autoComplete="off"
               onChange={handleChange}
               required
-            ></input>
+            />
           </div>
           <div
             className={styles.link}
@@ -92,7 +94,7 @@ const UserLoginForm: React.FC = () => {
       >
         ✕
       </button>
-    </div>
+    </section>
   );
 };
 

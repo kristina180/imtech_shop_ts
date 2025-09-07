@@ -40,6 +40,7 @@
 
 .divimage {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .image {
@@ -50,6 +51,7 @@
   width: 300px;
   font-size: 20px;
   color: #babdc8;
+  cursor: pointer;
 }
 
 .quantity {
@@ -66,14 +68,15 @@
 }
 
 .quantity button {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: none;
   border-radius: 5px;
   align-items: center;
   background-color: #9497a3;
   color: white;
   font-size: small;
+  cursor: pointer;
 }
 
 .minus {
@@ -117,7 +120,24 @@
   border: none;
   border-radius: 5px;
   font-size: medium;
+  cursor: pointer;
 }
+.footer button:hover {
+  background-color: #c7286f;
+  transform: translateY(-1px);
+}
+
+.footer button:active {
+  background-color: #a91d5a;
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(228, 53, 130, 0.4); /* фокус-кольцо */
+}
+
 .totalprice {
   font-size: larger;
 }
@@ -129,6 +149,7 @@
   border: none;
   align-self: flex-start;
   text-align: right;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1200px) {

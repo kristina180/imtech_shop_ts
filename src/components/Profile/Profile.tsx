@@ -23,10 +23,11 @@ const Profile: React.FC = () => {
   function handleChange({
     target: { value, name },
   }: React.ChangeEvent<HTMLInputElement>) {
-    setValue({ ...values, [name]: value });
+    setValue((prev) => ({ ...prev, [name]: value }));
   }
 
-  function logoutClick() {
+  function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
     document.cookie = "token=; Max-Age=-1;";
     dispatch(logoutChange());
   }
@@ -34,7 +35,7 @@ const Profile: React.FC = () => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    const isEmpty = Object.values(values).some((elem) => !elem);
+    const isEmpty = Object.values(values).some((elem) => !elem.trim());
     if (isEmpty) return;
     dispatch(updateUser(values));
     dispatch(toggleForm(false));
@@ -103,7 +104,7 @@ const Profile: React.FC = () => {
             <button
               type="submit"
               className={`${styles.submit} ${styles.logout}`}
-              onClick={logoutClick}
+              onClick={handleLogout}
             >
               Log out
             </button>

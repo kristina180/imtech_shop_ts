@@ -11,7 +11,7 @@ const Poster: React.FC = () => {
   const { push } = useRouter();
 
   return (
-    <div className={styles.poster}>
+    <section className={styles.poster}>
       <div className={styles.product}>
         <div className={styles.title}>NEW!</div>
         <div className={styles.subtitle}>
@@ -27,12 +27,12 @@ const Poster: React.FC = () => {
       </div>
       <Image
         src={headphonePoster}
-        alt="headphones"
+        alt="Постер с розовыми меховыми наушниками"
         className={styles.image}
         width={420}
         height={420}
       />
-    </div>
+    </section>
   );
 };
 

@@ -12,7 +12,7 @@ const PosterSecond: React.FC = () => {
   const { push } = useRouter();
 
   return (
-    <div className={styles.poster}>
+    <section className={styles.poster}>
       <div className={styles.content}>
         <div className={styles.title}>Pink Collection</div>
         <button
@@ -36,7 +36,7 @@ const PosterSecond: React.FC = () => {
           className={styles.secondImage}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { useState, useMemo } from "react";
+import { useAppSelector } from "@/hooks/hook";
 
 import { notPhoto } from "@/utils/constants";
-import { IProduct } from "@/utils/types";
+
 import styles from "./CategoryProducts.module.css";
 
 type TInputValue = {
@@ -23,105 +23,66 @@ const CategoryProducts: React.FC = () => {
   const [page, setPage] = useState<number>(1);
 
   const { products } = useAppSelector((state) => state.products);
-  const { user } = useAppSelector((state) => state.user);
-
-  const dispatch = useAppDispatch();
 
   const pathname = usePathname();
   const category: string = pathname.replace("/category/", "");
 
-  const category_products: IProduct[] = getCategoryProducts();
+  const category_products = useMemo(() => {
+    return products.filter((p) => p.category.slug === category);
+  }, [products, category]);
 
-  const [valueProducts, setValueProducts] = useState<IProduct[]>([
-    ...category_products,
-  ]);
-  const [valueView, setValueView] = useState<IProduct[]>(
-    valueProducts.slice(0, 10)
-  );
+  const filteredProducts = useMemo(() => {
+    const name = inputValue.name.trim().toLowerCase();
+    const price = parseFloat(inputValue.price);
 
-  let count_button: number[] =
-    valueProducts.length != 0
-      ? Array.from(
-          { length: Math.ceil(valueProducts.length / 10) },
-          (_, i) => i + 1
-        )
-      : [];
+    return category_products.filter((product) => {
+      const matchesName =
+        name === "" ||
+        product.title.toLowerCase().includes(name) ||
+        product.category.slug.includes(name) ||
+        product.description.toLowerCase().includes(name);
 
-  useEffect(() => {
-    localStorage.setItem("startItem", JSON.stringify(valueProducts));
-  }, [valueProducts]);
+      const matchesPrice = isNaN(price) || product.price <= price;
 
-  function getCategoryProducts(): IProduct[] {
-    const data_localStorage = localStorage.getItem("startItem");
-    const localStorageProducts: IProduct[] =
-      data_localStorage != null ? JSON.parse(data_localStorage) : [];
-    const productslist: IProduct[] =
-      products.length > 0
-        ? products.filter((elem) => elem.category.slug == category)
-        : localStorageProducts;
-    return productslist;
-  }
+      return matchesName && matchesPrice;
+    });
+  }, [inputValue, category_products]);
+
+  const currentProducts = useMemo(() => {
+    const start = (page - 1) * 10;
+    const end = start + 10;
+    return filteredProducts.slice(start, end);
+  }, [filteredProducts, page]);
+
+  const totalPages = Math.ceil(filteredProducts.length / 10);
 
   function handleChange({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue({ ...inputValue, [name]: String(value) });
+    setInputValue((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      (inputValue.name == "" && inputValue.price == "") ||
-      (inputValue.name == " " && inputValue.price == " ")
-    ) {
-      setValueProducts(category_products);
-      setValueView(category_products.slice(0, 10));
-      return;
-    }
-
-    const name: string = inputValue.name.toLowerCase();
-    const price: string = inputValue.price;
-    let new_items: IProduct[] = [...category_products];
-
-    if ((name != "" && price == "") || (name == "" && price != "")) {
-      new_items =
-        inputValue.price != ""
-          ? category_products.filter((elem) => {
-              return +elem.price <= Number(inputValue.price);
-            })
-          : category_products.filter(
-              (elem) =>
-                elem.title.toLowerCase().includes(name) ||
-                elem.category.slug.includes(name) ||
-                elem.description.includes(name)
-            );
-    }
-    if (name != "" && price != "") {
-      new_items = category_products.filter(
-        (elem) =>
-          elem.price <= +inputValue.price &&
-          (elem.title.toLowerCase().includes(name) ||
-            elem.category.slug.includes(name) ||
-            elem.description.includes(name))
-      );
-    }
-
-    setValueProducts(new_items);
-    setValueView(new_items.slice(0, 10));
-  }
+    setPage(1);
+  };
 
   function handleChangePage(num: number) {
     setPage(num);
-    setValueView(category_products.slice(num * 10 - 10, num * 10));
   }
 
   return (
-    <div className={styles.section}>
+    <section className={styles.section}>
       <div className={styles.titlefirst}>
         {category[0].toUpperCase() + category.slice(1)}
       </div>
 
-      <form className={styles.formsearch} onSubmit={handleSubmit}>
+      <form
+        className={styles.formsearch}
+        onSubmit={handleSubmit}
+        role="search"
+        aria-label="Filter products"
+      >
         <input
           className={styles.input}
           type="text"
@@ -130,6 +91,7 @@ const CategoryProducts: React.FC = () => {
           placeholder="Product name"
           autoComplete="off"
           onChange={handleChange}
+          aria-label="Search by name"
         ></input>
 
         <input
@@ -140,6 +102,7 @@ const CategoryProducts: React.FC = () => {
           placeholder="Before price"
           autoComplete="off"
           onChange={handleChange}
+          aria-label="Search by price"
         ></input>
 
         <button type="submit" className={styles.buttonsubmit}>
@@ -147,13 +110,14 @@ const CategoryProducts: React.FC = () => {
         </button>
       </form>
 
-      {valueView.length > 0 ? (
+      {currentProducts.length > 0 ? (
         <div className={styles.list}>
-          {valueView.map(({ id, images, title, price }) => (
+          {currentProducts.map(({ id, images, title, price }) => (
             <Link
               href={`/product/${id}`}
               key={id}
               className={styles.linkproduct}
+              aria-label={`Open product ${title}`}
             >
               <div className={styles.divimage}>
                 <img
@@ -182,18 +146,21 @@ const CategoryProducts: React.FC = () => {
         <div className={styles.nofound}>Products not found</div>
       )}
 
-      <div className={styles.buttons}>
-        {count_button.map((elem) => (
-          <button
-            key={elem}
-            onClick={() => handleChangePage(elem)}
-            className={elem == page ? styles.selectedPage : styles.buttonPage}
-          >
-            {elem}
-          </button>
-        ))}
-      </div>
-    </div>
+      {totalPages > 1 && (
+        <nav className={styles.buttons} aria-label="Pagination">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+            <button
+              key={num}
+              onClick={() => handleChangePage(num)}
+              className={num === page ? styles.selectedPage : styles.buttonPage}
+              aria-current={num === page ? "page" : undefined}
+            >
+              {num}
+            </button>
+          ))}
+        </nav>
+      )}
+    </section>
   );
 };
 

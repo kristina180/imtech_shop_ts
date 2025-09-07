@@ -2,14 +2,24 @@
   display: flex;
   padding: 10px;
   flex-direction: row;
-  height: 40px;
+  height: 60px;
   align-items: center;
   width: 80%;
   margin: 20px 10% 0px;
   justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.logo_button {
+  width: 100px;
+  height: 40px;
+  align-items: center;
+  justify-items: center;
+  border: none;
+  outline: none;
 }
 .logo {
-  width: 10%;
+  width: 100%;
   height: 100%;
 }
 
@@ -19,19 +29,30 @@
   height: 100%;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .user {
   display: flex;
   align-items: center;
   width: 20%;
-  height: 100%;
+  height: 40px;
   color: #a6a9b4;
+  font-size: 20px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.username {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: black;
   display: flex;
@@ -45,8 +66,8 @@
 }
 
 .form {
-  width: 50%;
-  height: 30px;
+  width: 60%;
+  height: 36px;
   background: #2d2f39;
   border-radius: 10px;
   z-index: 2;
@@ -74,6 +95,7 @@
   border: none;
   background: none;
   color: white;
+  font-size: 16px;
 }
 
 .input:focus {
@@ -121,47 +143,236 @@
 }
 .fav,
 .cartimg {
-  height: 100%;
+  height: 26px;
+  width: 26px;
 }
 
 .cart {
   position: relative;
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 28px;
 }
 
 .count {
   display: flex;
   justify-content: center;
-  width: 10px;
-  height: 10px;
+  align-items: center;
+  width: 16px;
+  height: 16px;
   background-color: #e43582;
-  font-size: xx-small;
+  font-size: 11px;
   border-radius: 50%;
-  position: absolute;
-  bottom: -5%;
-  right: -15%;
+  position: relative;
+  bottom: -10px;
+  right: 12px;
   color: #fff;
 }
 
 .text {
   width: 100%;
   height: 30px;
-  padding: 5px;
+  padding: 5px 10px 5px;
   background-color: #838591;
   margin-top: 10px;
   border-radius: 10px;
   color: white;
   overflow-y: auto;
 }
+@media screen and (max-width: 1200px) {
+  .header {
+    height: 40px;
+    padding: 4px;
+  }
 
-@media screen and (max-width: 1100px) {
-  .count {
-    right: -10%;
+  .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .form {
+    height: 32px;
   }
 }
 
+@media screen and (max-width: 1100px) {
+  .username {
+    font-size: 18px;
+  }
+
+  .count {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .avatar,
+  .form,
+  .info,
+  .user {
+    height: 26px;
+  }
+
+  .avatar {
+    width: 26px;
+  }
+
+  .username {
+    font-size: 14px;
+  }
+
+  .input::placeholder,
+  .input {
+    font-size: 12px;
+  }
+
+  .form {
+    border-radius: 8px;
+  }
+
+  .cartimg,
+  .fav {
+    width: 22px;
+    height: 22px;
+  }
+
+  .logo_button {
+    width: 76px;
+  }
+
+  .avatar {
+    margin-right: 4px;
+  }
+
+  .count {
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+    bottom: -6px;
+    right: 10px;
+  }
+  .text {
+    font-size: 12px;
+    height: 24px;
+    border-radius: 6px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .avatar,
+  .form,
+  .user,
+  .info {
+    height: 20px;
+  }
+
+  .cartfav {
+    width: 30px;
+  }
+
+  .avatar {
+    width: 20px;
+  }
+
+  .input::placeholder {
+    font-size: 10px;
+  }
+
+  .form {
+    border-radius: 6px;
+  }
+
+  .formforsearch {
+    padding: 2px;
+  }
+
+  .input {
+    height: 14px;
+  }
+
+  .cartimg,
+  .fav {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cartfav {
+    box-sizing: border-box;
+  }
+
+  .logo_button {
+    width: 58px;
+  }
+
+  .count {
+    width: 10px;
+    height: 10px;
+    font-size: 7px;
+  }
+
+  .searchicon {
+    margin: 0 6px;
+  }
+
+  .boxelem img {
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .boxelem {
+    font-size: 2.5vw;
+  }
+  .text {
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .username {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .user {
+    width: fit-content;
+  }
+  .logo_button {
+    width: 48px;
+  }
+  .username {
+    display: none;
+  }
+
+  .avatar {
+    margin-right: 0;
+  }
+
+  .logo {
+    margin-right: 6px;
+  }
+
+  .form {
+    margin-right: 4px;
+  }
+
+  .input::placeholder,
+  .input {
+    font-size: 8px;
+    margin: auto;
+  }
+}
+
+/* @media screen and (max-width: 1100px) {
+  .count {
+    right: -10%;
+  }
+} */
+/* 
 @media screen and (max-width: 1000px) {
   .header {
     padding: 0.8vw;
@@ -193,10 +404,7 @@
     font-size: 1.5vw;
   }
   .count {
-    /* width: 8px;
-    height: 8px;
-    font-size: 10%;
-   */
+   
     text-align: center;
     right: -15%;
     bottom: 0;
@@ -238,8 +446,7 @@
   .boxelem img {
     width: 6vw;
     height: 6vw;
-    /* width: 30%;
-height: ; */
+
     margin-right: 5px;
     border-radius: 0.8vw;
   }
@@ -247,9 +454,9 @@ height: ; */
     height: 200%;
     font-size: 2.5vw;
   }
-}
+} */
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .count {
     width: 7px;
     height: 7px;
@@ -261,8 +468,9 @@ height: ; */
   .text {
     border-radius: 1vw;
   }
-}
-@media screen and (max-width: 400px) {
+} */
+
+/* @media screen and (max-width: 400px) {
   .boxelem {
     margin-bottom: 2px;
   }
@@ -272,4 +480,4 @@ height: ; */
     font-size: 3.5px;
     right: 20%;
   }
-}
+} */

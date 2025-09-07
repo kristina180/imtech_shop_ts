@@ -58,7 +58,7 @@
 .description {
   height: 50%;
   text-align: left;
-  font-size: 1.2vw;
+  font-size: 1.3vw;
   color: #9497a3;
 }
 
@@ -69,7 +69,7 @@
 
 .buttons {
   width: 100%;
-  height: 2.5vw;
+  height: 32px;
   margin-top: auto;
   display: flex;
   flex-direction: row;
@@ -86,7 +86,7 @@
 }
 
 .quantity {
-  width: 40%;
+  width: 35%;
 
   display: flex;
   flex-direction: row;
@@ -96,12 +96,12 @@
 }
 .quantitycount {
   font-size: 80%;
-  width: 4vw;
+
   text-align: center;
 }
 
 .quantity button {
-  width: 25%;
+  width: 32px;
   line-height: 25%;
   height: 100%;
   border: none;
@@ -115,9 +115,9 @@
 .minus {
   box-sizing: border-box;
 }
-.plus {
+/* .plus {
   line-height: 2vw;
-}
+} */
 
 .buttonFav {
   background-color: #9497a3;
@@ -140,6 +140,14 @@
   }
   .images {
     min-height: 310px;
+  }
+
+  .buttons {
+    height: 24px;
+  }
+
+  .quantity button {
+    width: 24px;
   }
 }
 
