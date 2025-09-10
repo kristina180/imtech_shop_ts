@@ -50,8 +50,8 @@ This is a modern, responsive e-commerce web application designed to provide user
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/kristina180/test_task_infotecs_ts.git
-   cd test_task_infotecs_ts
+   git clone https://github.com/kristina180/imtech_shop_ts.git
+   cd imtech_shop_ts
 
 2. Install dependencies:
    
@@ -79,5 +79,5 @@ This is a modern, responsive e-commerce web application designed to provide user
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Deploy on Vercel
-https://test-task-infotecs-ts.vercel.app/
+https://imtech-shop-ts.vercel.app/
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
