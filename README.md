@@ -1,3 +1,4 @@
+
 <h1 align="center">Imtech</h1>
 
 
@@ -17,6 +18,7 @@ This is a modern, responsive e-commerce web application designed to provide user
 - Responsive Design: Optimized for desktops, tablets, and mobile devices.
 
 ## Preview
+
 
 <p align="center"> Main Page
    
@@ -48,6 +50,30 @@ This is a modern, responsive e-commerce web application designed to provide user
 
 
 ## Features
+
+- **Category Browsing**  
+  View products filtered by categories based on the URL path.
+
+- **Search and Filtering**  
+  Filter products by name and maximum price using a user-friendly search form.
+
+- **Pagination**  
+  Products are displayed with pagination, showing 10 items per page with page navigation.
+
+- **Responsive Design**  
+  Layout and components adapt seamlessly to different screen sizes, from large desktops to mobile devices.
+
+- **Image Fallback Handling**  
+  Displays a placeholder image if the product image fails to load.
+
+- **Optimized Rendering**  
+  Utilizes `useMemo` for efficient filtering and pagination to improve performance.
+
+- **User Experience (UX)**  
+
+- **Accessibility (a11y)**  
+  Includes ARIA attributes for improved screen reader support and keyboard navigation.
+
 
 
 
