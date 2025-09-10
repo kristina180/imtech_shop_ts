@@ -13,7 +13,7 @@
 .list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(10vw, 1fr));
   grid-template-rows: 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
@@ -29,6 +29,7 @@
   height: 300px;
   box-sizing: border-box;
 }
+
 .divimage {
   border-radius: 10px 10px 0 0;
   width: 100%;
@@ -38,6 +39,8 @@
   border-radius: 10px 10px 0 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .titlefirst {
@@ -54,9 +57,11 @@
 
 .title {
   width: 100%;
+  max-width: 100%;
   color: #ffffff;
   margin-top: 5px;
   margin-bottom: 5px;
+  overflow-wrap: break-word;
 }
 
 .price {
@@ -73,18 +78,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10px;
-
-  /* gap: 5px; */
 }
-
-/* .formblock {
-  border: none;
-  width: 30%;
-
-  box-sizing: border-box;
-  
-  margin-right: 10px;
-} */
 
 .input {
   border: none;

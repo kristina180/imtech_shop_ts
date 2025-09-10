@@ -21,11 +21,11 @@ import styles from "./Header.module.css";
 const Header: React.FC = () => {
   const [userValue, setUserValue] = useState<string>("Guest");
   const [filterValue, setFilterValue] = useState<IProduct[]>([]);
-  const [userAvatar, setAvatar] = useState<string>(avatarImg);
+  const [userAvatar, setAvatar] = useState<string>("./avatar.svg");
   const [searchValue, setSearchValue] = useState<string>("");
 
   const { products } = useAppSelector((state) => state.products);
-  const { user, logout, cart } = useAppSelector((state) => state.user);
+  const { user, cart } = useAppSelector((state) => state.user);
 
   const { push } = useRouter();
   const dispatch = useAppDispatch();
@@ -80,8 +80,8 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (!user) {
+      setAvatar("./avatar.svg");
       setUserValue("Guest");
-      setAvatar(avatarImg);
     } else {
       setUserValue(user.name);
       setAvatar(user.avatar);
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
 
       <div className={styles.info}>
         <button className={styles.user} onClick={handleClick}>
-          <Image
+          <img
             src={userAvatar}
             alt={user ? "avatar user" : "guest"}
             width={50}

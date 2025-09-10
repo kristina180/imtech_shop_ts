@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import { useState, useMemo } from "react";
 import { useAppSelector } from "@/hooks/hook";
 
 import { notPhoto } from "@/utils/constants";
-
 import styles from "./CategoryProducts.module.css";
 
 type TInputValue = {
@@ -20,6 +18,12 @@ const CategoryProducts: React.FC = () => {
     name: "",
     price: "",
   });
+
+  const [searchValue, setSearchValue] = useState<TInputValue>({
+    name: "",
+    price: "",
+  });
+
   const [page, setPage] = useState<number>(1);
 
   const { products } = useAppSelector((state) => state.products);
@@ -32,8 +36,8 @@ const CategoryProducts: React.FC = () => {
   }, [products, category]);
 
   const filteredProducts = useMemo(() => {
-    const name = inputValue.name.trim().toLowerCase();
-    const price = parseFloat(inputValue.price);
+    const name = searchValue.name.trim().toLowerCase();
+    const price = parseFloat(searchValue.price);
 
     return category_products.filter((product) => {
       const matchesName =
@@ -46,7 +50,7 @@ const CategoryProducts: React.FC = () => {
 
       return matchesName && matchesPrice;
     });
-  }, [inputValue, category_products]);
+  }, [searchValue, category_products]);
 
   const currentProducts = useMemo(() => {
     const start = (page - 1) * 10;
@@ -59,13 +63,14 @@ const CategoryProducts: React.FC = () => {
   function handleChange({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue((prev) => ({ ...prev, [name]: value }));
+    setInputValue({ ...inputValue, [name]: value });
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setPage(1);
-  };
+    setSearchValue(inputValue); // фильтрация только при отправке формы
+    setPage(1); // сбросить на первую страницу
+  }
 
   function handleChangePage(num: number) {
     setPage(num);
@@ -92,7 +97,7 @@ const CategoryProducts: React.FC = () => {
           autoComplete="off"
           onChange={handleChange}
           aria-label="Search by name"
-        ></input>
+        />
 
         <input
           className={styles.input}
@@ -103,7 +108,7 @@ const CategoryProducts: React.FC = () => {
           autoComplete="off"
           onChange={handleChange}
           aria-label="Search by price"
-        ></input>
+        />
 
         <button type="submit" className={styles.buttonsubmit}>
           Search

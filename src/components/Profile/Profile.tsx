@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    const isEmpty = Object.values(values).some((elem) => !elem.trim());
+    const isEmpty = Object.values(values).some((elem) => !String(elem).trim());
     if (isEmpty) return;
     dispatch(updateUser(values));
     dispatch(toggleForm(false));
