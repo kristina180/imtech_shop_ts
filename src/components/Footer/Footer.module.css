@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 .smicons {
-  width: 10%;
+  width: fit-content;
   display: flex;
   gap: 0px 0.5vw;
   flex-direction: row;
@@ -36,7 +36,8 @@
 }
 .youtube,
 .insta {
-  height: 100%;
+  height: 30px;
+  width: 30px;
   margin: auto 0px;
   cursor: pointer;
 }
@@ -50,8 +51,20 @@
   .smicons {
     height: 100%;
   }
+}
+
+@media screen and (max-width: 900px) {
   .youtube,
   .insta {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .youtube,
+  .insta {
+    height: 20px;
     width: 20px;
   }
 }
@@ -59,5 +72,15 @@
 @media screen and (max-width: 600px) {
   .footer {
     border-radius: 1vw;
+  }
+
+  .smicons {
+    height: 80%;
+  }
+
+  .youtube,
+  .insta {
+    height: 100%;
+    width: 16px;
   }
 }

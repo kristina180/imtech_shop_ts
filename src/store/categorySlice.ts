@@ -11,6 +11,7 @@ export const getCategories = createAsyncThunk<
   try {
     const response = await fetch(`${USER_URL}categories`);
     let data = await response.json();
+
     data = data.map((item: ICategories) => item.slug).slice(0, 5);
     return data;
   } catch (error: any) {

@@ -24,7 +24,7 @@ const Categories: React.FC<IPropsForCategories> = ({
 
             return (
               <Link
-                key={category_name}
+                key={product?.id}
                 href={`/category/${category_name.toLocaleLowerCase()}`}
                 className={styles.linkcategories}
               >

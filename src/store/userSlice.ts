@@ -46,8 +46,14 @@ export const createUser = createAsyncThunk<
     await axios.post(`${USER_URL}auth/login`, payload);
 
     return response.data;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error) {
+    let errorMessage = "Неизвестная ошибка";
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    return rejectWithValue(errorMessage);
   }
 });
 

@@ -68,8 +68,8 @@ const CategoryProducts: React.FC = () => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSearchValue(inputValue); // фильтрация только при отправке формы
-    setPage(1); // сбросить на первую страницу
+    setSearchValue(inputValue);
+    setPage(1);
   }
 
   function handleChangePage(num: number) {

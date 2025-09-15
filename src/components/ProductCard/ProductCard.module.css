@@ -86,7 +86,7 @@
 }
 
 .quantity {
-  width: 35%;
+  width: 40%;
 
   display: flex;
   flex-direction: row;
@@ -115,9 +115,6 @@
 .minus {
   box-sizing: border-box;
 }
-/* .plus {
-  line-height: 2vw;
-} */
 
 .buttonFav {
   background-color: #9497a3;
