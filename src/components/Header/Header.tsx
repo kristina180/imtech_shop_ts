@@ -21,7 +21,7 @@ import styles from "./Header.module.css";
 const Header: React.FC = () => {
   const [userValue, setUserValue] = useState<string>("Guest");
   const [filterValue, setFilterValue] = useState<IProduct[]>([]);
-  const [userAvatar, setAvatar] = useState<string>("./avatar.svg");
+  const [userAvatar, setAvatar] = useState<string>(avatarImg.src);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const { products } = useAppSelector((state) => state.products);
@@ -79,8 +79,9 @@ const Header: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log(userAvatar)
     if (!user) {
-      setAvatar("./avatar.svg");
+      setAvatar(avatarImg.src);
       setUserValue("Guest");
     } else {
       setUserValue(user.name);
@@ -89,6 +90,7 @@ const Header: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
+    console.log('render',userAvatar)
     const handleClickOutside = (e: MouseEvent) => {
       const searchinput = document.getElementById("searchinput");
       const searchform = document.getElementById("searchform");
