@@ -10,10 +10,15 @@
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.productsSection{
+  max-width: 100%;
+}
+
 .list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, minmax(10vw, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
@@ -28,6 +33,7 @@
   border-radius: 10px;
   height: 300px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .divimage {

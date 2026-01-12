@@ -115,41 +115,46 @@ const CategoryProducts: React.FC = () => {
         </button>
       </form>
 
-      {currentProducts.length > 0 ? (
-        <div className={styles.list}>
-          {currentProducts.map(({ id, images, title, price }) => (
-            <Link
-              href={`/product/${id}`}
-              key={id}
-              className={styles.linkproduct}
-              aria-label={`Open product ${title}`}
-            >
-              <div className={styles.divimage}>
-                <img
-                  src={images[0]}
-                  alt=""
-                  width={170}
-                  height={170}
-                  className={styles.image}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null;
-                    currentTarget.src = notPhoto;
-                  }}
-                />
-              </div>
+      <section style={{maxWidth: '100%'}}>
+        {currentProducts.length > 0 ? (
+          <div className={styles.list}>
+            {currentProducts.map(({ id, images, title, price }) => (
+              <Link
+                href={`/product/${id}`}
+                key={id}
+                className={styles.linkproduct}
+                aria-label={`Open product ${title}`}
+              >
+                <div className={styles.divimage}>
+                  <img
+                    src={images[0]}
+                    alt=""
+                    width={170}
+                    height={170}
+                    className={styles.image}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = notPhoto;
+                    }}
+                  />
+                </div>
 
-              <div className={styles.wrapper}>
-                <h3 className={styles.title}>
-                  {title.split(" ").slice(0, 3).join(" ")}
-                </h3>
-                <div className={styles.price}>{`${price}$`}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <div className={styles.nofound}>Products not found</div>
-      )}
+                <div className={styles.wrapper}>
+                  <h3 className={styles.title}>
+                    {title.split(" ").slice(0, 3).join(" ")}
+                  </h3>
+                  <div className={styles.price}>{`${price}$`}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className={styles.nofound}>Products not found</div>
+        )}
+
+      </section>
+
+      
 
       {totalPages > 1 && (
         <nav className={styles.buttons} aria-label="Pagination">
